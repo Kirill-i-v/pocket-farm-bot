@@ -10,8 +10,8 @@
 
 ```shell
 git clone https://github.com/Kirill-i-v/pocket-farm-bot.git
-cd /pocket-farm-bot
-python3 -m venv venv
+cd pocket-farm-bot
+py -m venv venv
 venv\Scripts\activate
 pip install -r requirements.txt
 #Створіть .env файл і заповніть його даними
