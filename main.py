@@ -1,13 +1,16 @@
 import random
 import time
-import os
+from dotenv import load_dotenv
 import telebot
+import os
 import requests
 from telebot import types
 import threading
 
-WEATHER_KEY = os.getenv("WEATHER_KEY")   # Api_key від WeatherAPI
-API_KEY = os.getenv("API_KEY")
+
+load_dotenv()
+WEATHER_KEY = os.getenv("WEATHERAPI_ACCESS_TOKEN")
+API_KEY = os.getenv("TELEGRAM_ACCESS_TOKEN")
 bot = telebot.TeleBot(API_KEY, parse_mode=None)
 
 users = {}
@@ -24,7 +27,7 @@ class User:
     def __init__(self, user_id):
         self.user_id = user_id
         self.city = None
-        self.coins = 100500
+        self.coins = 500
         self.fields = 0
         self.field_crops = {}
         self.animals = {'курка': 0, 'корова': 0}
@@ -251,7 +254,7 @@ def simulate_bear_attack(user):
     while True:
         time.sleep(3600)
         if user.dogs > 0:
-            bot.send_photo(user.user_id,"https://img.freepik.com/free-vector/hand-drawn-cartoon-german-shepherd-illustration_23-2150435973.jpg?t=st=1731268027~exp=1731271627~hmac=7dafae435d8a417673e5430ea217c022d908d3cc9b5c2ded60b9bf1a0d02eb7c&w=740")
+            bot.send_photo(user.user_id, "https://img.freepik.com/free-vector/hand-drawn-cartoon-german-shepherd-illustration_23-2150435973.jpg?t=st=1731268027~exp=1731271627~hmac=7dafae435d8a417673e5430ea217c022d908d3cc9b5c2ded60b9bf1a0d02eb7c&w=740")
             user.dogs -= 1
             bot.send_message(user.user_id, "Ваш собака захистив тварин, але загинув при цьому.")
         else:
